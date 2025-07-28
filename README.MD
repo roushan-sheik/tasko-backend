@@ -28,9 +28,17 @@ This project is a TypeScript-based Express.js backend application integrated wit
 
 ### 🔁 1. Clone the Repository
 
-```bash
-git clone https://github.com/your-username/project-setup.git
+### SSH
 
+```bash
+git@github.com:roushan-sheik/tasko-backend.git
+
+```
+
+### HTTPS
+
+```bash
+https://github.com/roushan-sheik/tasko-backend.git
 ```
 
 ## Navigate to this directory
