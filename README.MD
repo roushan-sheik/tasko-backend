@@ -74,7 +74,6 @@ http://localhost:5000
 ## 📁 Project Structure
 
 ```
-
     .
 
     ├── postman_collection.json        ===========================> Api Docs
