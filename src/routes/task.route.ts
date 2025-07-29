@@ -14,10 +14,9 @@ router
   .get(TaskController.getAllTasks);
 
 router.route("/stats").get(TaskController.getTaskStats);
-
 router.route("/bulk-update").patch(TaskController.bulkUpdateTasks);
-
 router.route("/bulk-delete").delete(TaskController.bulkDeleteTasks);
+router.route("/category/:category").get(TaskController.getTasksByCategory);
 
 router
   .route("/:id")
