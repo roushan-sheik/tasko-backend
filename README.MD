@@ -65,6 +65,12 @@ npm install
 npm run start:dev
 ```
 
+### Application is running on this port
+
+```bash
+http://localhost:5000
+```
+
 ## 📁 Project Structure
 
 ```
