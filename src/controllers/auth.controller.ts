@@ -14,11 +14,7 @@ const registerUser = AsyncHandler(async (req: Request, res: Response) => {
   res
     .status(StatusCodes.CREATED)
     .json(
-      new ApiResponse(
-        StatusCodes.CREATED,
-        result,
-        "User is created Successfully."
-      )
+      new ApiResponse(StatusCodes.CREATED, result, "Register Successfully")
     );
 });
 // update auth
@@ -41,7 +37,26 @@ const loginUser = AsyncHandler(async (req: Request, res: Response) => {
     );
 });
 
+const logoutUser = AsyncHandler(async (req: Request, res: Response) => {
+  const refreshToken = req.cookies.refreshToken;
+
+  await AuthService.logoutUser(refreshToken);
+
+  // Clear cookie
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: config.NODE_ENV === "production",
+  });
+
+  res
+    .status(StatusCodes.OK)
+    .json(
+      new ApiResponse(StatusCodes.OK, null, "User logged out successfully")
+    );
+});
+
 export const AuthControllers = {
   registerUser,
   loginUser,
+  logoutUser,
 };

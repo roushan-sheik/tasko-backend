@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-this-alias */
-/* eslint-disable prefer-const */
 import { Schema, model } from "mongoose";
 import { TUser } from "../interfaces/user.interface";
 import bcryptjs from "bcryptjs";
@@ -10,13 +8,15 @@ const userSchema = new Schema<TUser>({
     type: String,
     required: [true, "Email is required"],
   },
-
   password: {
     type: String,
     required: [true, "Password is required"],
     select: 0,
   },
-
+  refreshToken: {
+    type: String,
+    select: false,
+  },
   passwordChangedAt: {
     type: Date,
   },
@@ -24,9 +24,10 @@ const userSchema = new Schema<TUser>({
 
 // password hash method
 userSchema.pre("save", async function (next) {
-  let user = this;
-  user.password = await bcryptjs.hash(
-    user.password,
+  if (!this.isModified("password")) return next();
+
+  this.password = await bcryptjs.hash(
+    this.password,
     Number(config.BCRYPT_SALT)
   );
   next();
