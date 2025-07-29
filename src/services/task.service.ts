@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Task,
   TaskCreatePayload,
@@ -38,7 +40,7 @@ const createTaskIntoDB = async (payload: TaskCreatePayload): Promise<Task> => {
 const getAllTasksFromDB = async (query: TaskQueryParams) => {
   try {
     // Build the query using QueryBuilder
-    const taskQuery = new QueryBuilder(TaskModel.find(), query)
+    const taskQuery = new QueryBuilder(TaskModel.find({}), query)
       .search(["title", "description"]) // Searchable fields
       .filter() // Apply filters like category, status
       .sort() // Apply sorting
@@ -154,7 +156,7 @@ const deleteTaskFromDB = async (taskId: string): Promise<void> => {
     }
   } catch (error: any) {
     if (error.name === "CastError") {
-      throw new ApiError(StatusCodes.BAD_REQUEST, "Invalid task ID");
+      throw new ApiError(StatusCodes.BAD_REQUEST, "Invalid task ID CastError");
     }
     if (error instanceof ApiError) {
       throw error;

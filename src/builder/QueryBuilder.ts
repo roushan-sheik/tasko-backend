@@ -44,7 +44,7 @@ export class QueryBuilder<T> {
 
   //* Sorting Method
   public sort() {
-    const sortBy = (this.query.sortBy as string) || "";
+    const sortBy = (this.query.sortBy as string) || "-createdAt"; // default sort
     this.modelQuery = this.modelQuery.sort(sortBy);
     return this;
   }

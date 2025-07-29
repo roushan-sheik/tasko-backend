@@ -133,7 +133,9 @@ const bulkDeleteTasks = AsyncHandler(async (req: Request, res: Response) => {
       );
   }
 
-  const deletePromises = taskIds.map((id) => TaskService.deleteTaskFromDB(id));
+  const deletePromises = taskIds.map((id) => {
+    TaskService.deleteTaskFromDB(id);
+  });
 
   const results = await Promise.allSettled(deletePromises);
 

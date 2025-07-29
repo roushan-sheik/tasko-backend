@@ -89,40 +89,7 @@ export const updateTaskValidation = z.object({
   }),
 });
 
-export const taskParamsValidation = z.object({
-  params: z.object({
-    id: z
-      .string({ required_error: "Task ID is required" })
-      .regex(/^[0-9a-fA-F]{24}$/, "Invalid task ID format"),
-  }),
-});
-
-export const taskQueryValidation = z.object({
-  query: z.object({
-    searchTerm: z.string().optional(),
-    category: taskCategoryEnum.optional(),
-    status: taskStatusEnum.optional(),
-    limit: z
-      .string()
-      .transform((val) => parseInt(val))
-      .refine(
-        (val) => !isNaN(val) && val > 0,
-        "Limit must be a positive number"
-      )
-      .optional(),
-    page: z
-      .string()
-      .transform((val) => parseInt(val))
-      .refine((val) => !isNaN(val) && val > 0, "Page must be a positive number")
-      .optional(),
-    sortBy: z.string().optional(),
-    fields: z.string().optional(),
-  }),
-});
-
 export const TaskValidation = {
   createTaskValidation,
   updateTaskValidation,
-  taskParamsValidation,
-  taskQueryValidation,
 };
