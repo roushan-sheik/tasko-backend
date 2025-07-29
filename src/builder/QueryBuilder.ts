@@ -67,6 +67,6 @@ export class QueryBuilder<T> {
   }
 }
 
-// ব্যবহার উদাহরণ:
+// Uses Example:
 // const queryBuilder = new QueryBuilder(Movie.find({}), query);
 // queryBuilder.search(['title', 'genre']).paginate().sort().fields().filter();
