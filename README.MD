@@ -67,6 +67,8 @@ npm install
 .env.development
 ```
 
+### 🔥 Install all the dependencies
+
 ```bash
 npm install
 ```
