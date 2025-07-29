@@ -17,7 +17,7 @@ const registerUser = AsyncHandler(async (req: Request, res: Response) => {
       new ApiResponse(StatusCodes.CREATED, result, "Register Successfully")
     );
 });
-// update auth
+
 const loginUser = AsyncHandler(async (req: Request, res: Response) => {
   const { accessToken, refreshToken } = await AuthService.LoginUser(req.body);
   //   set cookie
@@ -35,6 +35,26 @@ const loginUser = AsyncHandler(async (req: Request, res: Response) => {
         "User LoggedIn Successfully."
       )
     );
+});
+
+const getSingleUser = AsyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AuthService.getSingleUser(id);
+
+  res
+    .status(StatusCodes.OK)
+    .json(new ApiResponse(StatusCodes.OK, result, "User fetched successfully"));
+});
+
+const resetPassword = AsyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { newPassword } = req.body;
+
+  await AuthService.resetPassword(id, newPassword);
+
+  res
+    .status(StatusCodes.OK)
+    .json(new ApiResponse(StatusCodes.OK, null, "Password reset successfully"));
 });
 
 const logoutUser = AsyncHandler(async (req: Request, res: Response) => {
@@ -59,4 +79,6 @@ export const AuthControllers = {
   registerUser,
   loginUser,
   logoutUser,
+  getSingleUser,
+  resetPassword,
 };

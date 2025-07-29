@@ -2,6 +2,7 @@ import { Router } from "express";
 import { AuthControllers } from "../controllers/auth.controller";
 import { zodValidateRequest } from "../middlewares";
 import { AuthValidation } from "../zod/auth.validation";
+import { auth } from "../middlewares/auth";
 
 const router = Router();
 
@@ -16,6 +17,15 @@ router
   .post(
     zodValidateRequest(AuthValidation.loginValidationSchema),
     AuthControllers.loginUser
+  );
+router.route("/user/:id").get(auth(), AuthControllers.getSingleUser);
+
+router
+  .route("/reset-password/:id")
+  .patch(
+    zodValidateRequest(AuthValidation.resetPasswordValidationSchema),
+    auth(),
+    AuthControllers.resetPassword
   );
 
 router.route("/logout").post(AuthControllers.logoutUser);
