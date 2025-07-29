@@ -59,6 +59,18 @@ If you want to run locally without Docker:
 npm install
 ```
 
+### 👨‍💻 Following the .env.example file provide all the credentials
+
+> Create a .env.development file
+
+```bash
+.env.development
+```
+
+```bash
+npm install
+```
+
 ### 🔥 Run in Dev Mode
 
 ```bash
