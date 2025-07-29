@@ -69,48 +69,47 @@ npm run start:dev
 
 ```
 
-    .
-    ├── app.ts
-    ├── builder
-    │   ├── QBuilder.ts
-    │   └── QueryBuilder.ts
-    ├── config
-    │   ├── db.config.ts
-    │   └── index.ts
-    ├── constants
-    ├── controllers
-    │   └── auth.controller.ts
-    ├── errors
-    │   ├── handleCastError.ts
-    │   ├── handleDuplicateError.ts
-    │   ├── handleValidationError.ts
-    │   ├── handleZodError.ts
-    │   └── index.ts
-    ├── interfaces
-    │   ├── auth.interface.ts
-    │   ├── error.interface.ts
-    │   └── user.interface.ts
-    ├── middlewares
-    │   ├── auth.ts
-    │   ├── globalErrorHandler.ts
-    │   ├── index.ts
-    │   ├── notFound.ts
-    │   └── zodValidateRequest.ts
-    ├── models
-    │   └── user.model.ts
-    ├── routes
-    │   └── auth.route.ts
-    ├── server.ts
-    ├── services
-    │   └── auth.service.ts
-    ├── utils
-    │   ├── ApiError.ts
-    │   ├── ApiResponse.ts
-    │   ├── AsyncHandler.ts
-    │   ├── functions
-    │   │   └── auth.utils.ts
-    │   └── GlobalErrorObj.ts
-    └── zod
-        └── auth.validation.ts
+  src.
+        ├── app.ts
+        ├── builder
+        │   └── QueryBuilder.ts
+        ├── config
+        │   ├── db.config.ts
+        │   └── index.ts
+        ├── constants
+        ├── controllers
+        │   └── auth.controller.ts
+        ├── errors
+        │   ├── handleCastError.ts
+        │   ├── handleDuplicateError.ts
+        │   ├── handleValidationError.ts
+        │   ├── handleZodError.ts
+        │   └── index.ts
+        ├── interfaces
+        │   ├── auth.interface.ts
+        │   ├── error.interface.ts
+        │   └── user.interface.ts
+        ├── middlewares
+        │   ├── auth.ts
+        │   ├── globalErrorHandler.ts
+        │   ├── index.ts
+        │   ├── notFound.ts
+        │   └── zodValidateRequest.ts
+        ├── models
+        │   └── user.model.ts
+        ├── routes
+        │   └── auth.route.ts
+        ├── server.ts
+        ├── services
+        │   └── auth.service.ts
+        ├── utils
+        │   ├── ApiError.ts
+        │   ├── ApiResponse.ts
+        │   ├── AsyncHandler.ts
+        │   ├── functions
+        │   │   └── auth.utils.ts
+        │   └── GlobalErrorObj.ts
+        └── zod
+            └── auth.validation.ts
 
 ```

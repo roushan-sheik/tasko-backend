@@ -7,6 +7,7 @@ import { StatusCodes } from "http-status-codes";
 import config from "../config";
 
 const registerUser = AsyncHandler(async (req: Request, res: Response) => {
+  // get payload from req body
   const payload = req.body;
 
   const result = await AuthService.registerUser(payload);
