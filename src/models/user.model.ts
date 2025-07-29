@@ -4,6 +4,9 @@ import bcryptjs from "bcryptjs";
 import config from "../config";
 
 const userSchema = new Schema<TUser>({
+  fullName: {
+    type: String,
+  },
   email: {
     type: String,
     required: [true, "Email is required"],

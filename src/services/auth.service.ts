@@ -62,6 +62,27 @@ const LoginUser = async (payload: TLoginUser): Promise<any> => {
   };
 };
 
+const getSingleUser = async (id: string): Promise<TUser | null> => {
+  const user = await User.findById(id).select("-password -refreshToken");
+  if (!user) {
+    throw new ApiError(StatusCodes.NOT_FOUND, "User not found");
+  }
+  return user;
+};
+
+const resetPassword = async (
+  userId: string,
+  newPassword: string
+): Promise<void> => {
+  const user = await User.findById(userId).select("+password");
+  if (!user) {
+    throw new ApiError(StatusCodes.NOT_FOUND, "User not found");
+  }
+
+  user.password = newPassword; // Will be hashed via pre('save')
+  await user.save();
+};
+
 const logoutUser = async (refreshToken: string): Promise<void> => {
   if (!refreshToken) return;
 
@@ -78,4 +99,6 @@ export const AuthService = {
   registerUser,
   LoginUser,
   logoutUser,
+  getSingleUser,
+  resetPassword,
 };
