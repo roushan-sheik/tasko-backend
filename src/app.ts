@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Request, Response } from "express";
+import { auth } from "./middlewares/auth";
 
 const app = express();
 
@@ -20,7 +21,7 @@ import AuthRoute from "./routes/auth.route";
 import TaskRoute from "./routes/task.route";
 
 app.use("/api/v1/auth", AuthRoute);
-app.use("/api/v1/tasks", TaskRoute);
+app.use("/api/v1/tasks", auth(), TaskRoute);
 
 // Home Route and Health Route
 app.get("/", (req: Request, res: Response) => {
