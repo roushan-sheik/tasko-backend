@@ -31,13 +31,13 @@ This project is a TypeScript-based Express.js backend application integrated wit
 ### HTTPS
 
 ```bash
-https://github.com/roushan-sheik/tasko-backend.git
+ git clone https://github.com/roushan-sheik/tasko-backend.git
 ```
 
 ### SSH
 
 ```bash
-git@github.com:roushan-sheik/tasko-backend.git
+git clone git@github.com:roushan-sheik/tasko-backend.git
 
 ```
 

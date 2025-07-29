@@ -1,5 +1,5 @@
 {
-  "name": "project-setup",
+  "name": "tasko",
   "version": "1.0.0",
   "main": "./dist/server.ts",
   "scripts": {
