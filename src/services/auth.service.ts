@@ -22,7 +22,9 @@ const registerUser = async (payload: TUser): Promise<TUser> => {
 
 const LoginUser = async (payload: TLoginUser): Promise<any> => {
   // check user
-  const user = await User.findOne({ email: payload.email }).select("+password");
+  const user = await User.findOne({ email: payload.email }).select(
+    "+password +refreshToken"
+  );
   if (!user) {
     throw new ApiError(StatusCodes.NOT_FOUND, "User not found!");
   }
@@ -51,13 +53,29 @@ const LoginUser = async (payload: TLoginUser): Promise<any> => {
       expiresIn: config.JWT_REFRESH_EXPIRY,
     }
   );
+  user.refreshToken = refreshToken;
+  await user.save();
+
   return {
     accessToken,
     refreshToken,
   };
 };
 
+const logoutUser = async (refreshToken: string): Promise<void> => {
+  if (!refreshToken) return;
+
+  // Find user with this refresh token
+  const user = await User.findOne({ refreshToken });
+
+  if (user) {
+    user.refreshToken = undefined;
+    await user.save();
+  }
+};
+
 export const AuthService = {
   registerUser,
   LoginUser,
+  logoutUser,
 };

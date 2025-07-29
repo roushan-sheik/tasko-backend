@@ -18,4 +18,6 @@ router
     AuthControllers.loginUser
   );
 
+router.route("/logout").post(AuthControllers.logoutUser);
+
 export default router;
