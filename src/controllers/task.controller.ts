@@ -155,6 +155,18 @@ const bulkDeleteTasks = AsyncHandler(async (req: Request, res: Response) => {
     );
 });
 
+const getTasksByCategory = AsyncHandler(async (req: Request, res: Response) => {
+  const { category } = req.params;
+
+  const result = await TaskService.getTasksByCategoryFromDB(category);
+
+  res
+    .status(StatusCodes.OK)
+    .json(
+      new ApiResponse(StatusCodes.OK, result, "Tasks retrieved by category")
+    );
+});
+
 export const TaskController = {
   createTask,
   getAllTasks,
@@ -164,4 +176,5 @@ export const TaskController = {
   getTaskStats,
   bulkUpdateTasks,
   bulkDeleteTasks,
+  getTasksByCategory,
 };

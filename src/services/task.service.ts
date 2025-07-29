@@ -208,6 +208,19 @@ const getTaskStatsFromDB = async () => {
   }
 };
 
+const getTasksByCategoryFromDB = async (category: string) => {
+  try {
+    const tasks = await TaskModel.find({ category });
+
+    return tasks.map((task) => task.toObject());
+  } catch (error) {
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Failed to fetch tasks by category"
+    );
+  }
+};
+
 export const TaskService = {
   createTaskIntoDB,
   getAllTasksFromDB,
@@ -215,4 +228,5 @@ export const TaskService = {
   updateTaskInDB,
   deleteTaskFromDB,
   getTaskStatsFromDB,
+  getTasksByCategoryFromDB,
 };
