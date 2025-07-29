@@ -69,47 +69,56 @@ npm run start:dev
 
 ```
 
-  src.
-        ├── app.ts
-        ├── builder
-        │   └── QueryBuilder.ts
-        ├── config
-        │   ├── db.config.ts
-        │   └── index.ts
-        ├── constants
-        ├── controllers
-        │   └── auth.controller.ts
-        ├── errors
-        │   ├── handleCastError.ts
-        │   ├── handleDuplicateError.ts
-        │   ├── handleValidationError.ts
-        │   ├── handleZodError.ts
-        │   └── index.ts
-        ├── interfaces
-        │   ├── auth.interface.ts
-        │   ├── error.interface.ts
-        │   └── user.interface.ts
-        ├── middlewares
-        │   ├── auth.ts
-        │   ├── globalErrorHandler.ts
-        │   ├── index.ts
-        │   ├── notFound.ts
-        │   └── zodValidateRequest.ts
-        ├── models
-        │   └── user.model.ts
-        ├── routes
-        │   └── auth.route.ts
-        ├── server.ts
-        ├── services
-        │   └── auth.service.ts
-        ├── utils
-        │   ├── ApiError.ts
-        │   ├── ApiResponse.ts
-        │   ├── AsyncHandler.ts
-        │   ├── functions
-        │   │   └── auth.utils.ts
-        │   └── GlobalErrorObj.ts
-        └── zod
-            └── auth.validation.ts
+    .
 
+    ├── postman_collection.json        ===========================> Api Docs
+    ├── src
+    │   ├── app.ts
+    │   ├── builder
+    │   │   └── QueryBuilder.ts
+    │   ├── config
+    │   │   ├── db.config.ts
+    │   │   └── index.ts
+    │   ├── constants
+    │   ├── controllers
+    │   │   ├── auth.controller.ts
+    │   │   └── task.controller.ts
+    │   ├── errors
+    │   │   ├── handleCastError.ts
+    │   │   ├── handleDuplicateError.ts
+    │   │   ├── handleValidationError.ts
+    │   │   ├── handleZodError.ts
+    │   │   └── index.ts
+    │   ├── interfaces
+    │   │   ├── auth.interface.ts
+    │   │   ├── error.interface.ts
+    │   │   ├── task.interface.ts
+    │   │   └── user.interface.ts
+    │   ├── middlewares
+    │   │   ├── auth.ts
+    │   │   ├── globalErrorHandler.ts
+    │   │   ├── index.ts
+    │   │   ├── notFound.ts
+    │   │   └── zodValidateRequest.ts
+    │   ├── models
+    │   │   ├── task.model.ts
+    │   │   └── user.model.ts
+    │   ├── routes
+    │   │   ├── auth.route.ts
+    │   │   └── task.route.ts
+    │   ├── server.ts
+    │   ├── services
+    │   │   ├── auth.service.ts
+    │   │   └── task.service.ts
+    │   ├── utils
+    │   │   ├── ApiError.ts
+    │   │   ├── ApiResponse.ts
+    │   │   ├── AsyncHandler.ts
+    │   │   ├── functions
+    │   │   │   └── auth.utils.ts
+    │   │   └── GlobalErrorObj.ts
+    │   └── zod
+    │       ├── auth.validation.ts
+    │       └── task.validation.ts
+    └── tsconfig.json
 ```
