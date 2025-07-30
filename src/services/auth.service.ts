@@ -62,6 +62,14 @@ const LoginUser = async (payload: TLoginUser): Promise<any> => {
   };
 };
 
+const getSingleUserByEmail = async (email: string): Promise<TUser | null> => {
+  const user = await User.findOne({ email }).select("-password -refreshToken");
+  if (!user) {
+    throw new ApiError(StatusCodes.NOT_FOUND, "User not found");
+  }
+  return user;
+};
+
 const getSingleUser = async (id: string): Promise<TUser | null> => {
   const user = await User.findById(id).select("-password -refreshToken");
   if (!user) {
@@ -101,4 +109,5 @@ export const AuthService = {
   logoutUser,
   getSingleUser,
   resetPassword,
+  getSingleUserByEmail,
 };

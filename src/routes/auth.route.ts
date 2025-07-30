@@ -18,6 +18,7 @@ router
     zodValidateRequest(AuthValidation.loginValidationSchema),
     AuthControllers.loginUser
   );
+router.route("/me").get(auth(), AuthControllers.getCurrentUser);
 router.route("/user/:id").get(auth(), AuthControllers.getSingleUser);
 
 router
