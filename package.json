@@ -2,7 +2,7 @@
   "name": "tasko",
   "version": "1.0.0",
   "main": "./dist/server.ts",
-   "scripts": {
+  "scripts": {
     "lint": "npx eslint src ",
     "lint:fix": "npx eslint src --fix",
     "prettier": "npx prettier --ignore-path .gitignore --write src",
