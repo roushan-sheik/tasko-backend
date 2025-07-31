@@ -7,9 +7,10 @@
     "lint:fix": "npx eslint src --fix",
     "prettier": "npx prettier --ignore-path .gitignore --write src",
     "prettier:fix": "npx prettier --write src",
-    "start:dev": "cross-env NODE_ENV=development  ts-node-dev --respawn --transpile-only ./src/server.ts",
-    "start:prod": "cross-env NODE_ENV=production nodemon ./dist/server.js",
-    "build": "tsc"
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "vercel-build": "npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -7,7 +7,11 @@ const app = express();
 
 // middleware
 const corseOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: [
+    "https://taskobd.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+  ],
   credentials: true,
 };
 app.use(cors(corseOptions));
@@ -16,7 +20,7 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// routes
+// routes import
 import AuthRoute from "./routes/auth.route";
 import TaskRoute from "./routes/task.route";
 
@@ -32,7 +36,7 @@ app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: "Server is healthy",
-    uptime: process.uptime(), // how long the app has been running
+    uptime: process.uptime(),
     timestamp: new Date().toISOString(),
   });
 });
@@ -42,4 +46,4 @@ import { globalErrorHandler, notFound } from "./middlewares";
 app.use(notFound);
 app.use(globalErrorHandler);
 
-export { app };
+export default app;

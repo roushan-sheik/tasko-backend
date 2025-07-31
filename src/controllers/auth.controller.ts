@@ -5,6 +5,12 @@ import { AuthService } from "../services/auth.service";
 import ApiResponse from "../utils/ApiResponse";
 import { StatusCodes } from "http-status-codes";
 import config from "../config";
+import jwt, { JwtPayload } from "jsonwebtoken";
+
+interface MyJwtPayload extends JwtPayload {
+  id: string;
+  email: string;
+}
 
 const registerUser = AsyncHandler(async (req: Request, res: Response) => {
   // get payload from req body
@@ -25,7 +31,10 @@ const loginUser = AsyncHandler(async (req: Request, res: Response) => {
     httpOnly: true,
     secure: config.NODE_ENV === "production",
   });
-
+  res.cookie("accessToken", accessToken, {
+    httpOnly: true,
+    secure: config.NODE_ENV === "production",
+  });
   res
     .status(StatusCodes.OK)
     .json(
@@ -35,6 +44,29 @@ const loginUser = AsyncHandler(async (req: Request, res: Response) => {
         "User LoggedIn Successfully."
       )
     );
+});
+
+const getCurrentUser = AsyncHandler(async (req: Request, res: Response) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    throw new Error("No token provided");
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  const decoded = jwt.verify(
+    token,
+    config.JWT_ACCESS_SECRET as string
+  ) as MyJwtPayload;
+
+  const email = decoded.email;
+
+  const result = await AuthService.getSingleUserByEmail(email);
+
+  res
+    .status(StatusCodes.OK)
+    .json(new ApiResponse(StatusCodes.OK, result, "User fetched successfully"));
 });
 
 const getSingleUser = AsyncHandler(async (req: Request, res: Response) => {
@@ -67,7 +99,10 @@ const logoutUser = AsyncHandler(async (req: Request, res: Response) => {
     httpOnly: true,
     secure: config.NODE_ENV === "production",
   });
-
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: config.NODE_ENV === "production",
+  });
   res
     .status(StatusCodes.OK)
     .json(
@@ -81,4 +116,5 @@ export const AuthControllers = {
   logoutUser,
   getSingleUser,
   resetPassword,
+  getCurrentUser,
 };

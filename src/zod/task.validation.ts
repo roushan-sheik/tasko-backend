@@ -45,7 +45,7 @@ export const createTaskValidation = z.object({
     points: z
       .number()
       .min(1, "Points must be at least 1")
-      .max(100, "Points cannot exceed 100")
+      .max(1000, "Points cannot exceed 1000")
       .optional()
       .default(10),
   }),

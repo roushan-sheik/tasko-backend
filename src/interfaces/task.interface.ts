@@ -41,7 +41,7 @@ export interface TaskUpdatePayload {
   points?: number;
 }
 
-export interface TaskQueryParams {
+export interface TaskQueryParams extends Record<string, unknown> {
   searchTerm?: string;
   category?: TaskCategory;
   status?: TaskStatus;
@@ -49,4 +49,5 @@ export interface TaskQueryParams {
   page?: number;
   sortBy?: string;
   fields?: string;
+  userId?: string;
 }

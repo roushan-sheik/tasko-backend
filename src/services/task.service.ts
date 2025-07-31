@@ -80,6 +80,16 @@ const getAllTasksFromDB = async (query: TaskQueryParams) => {
     );
   }
 };
+const getSpinWheelTasksFromDB = async (query: TaskQueryParams) => {
+  const { category } = query;
+  const filter = {
+    status: { $in: ["Pending", "InProgress"] },
+    ...(category && { category }),
+  };
+
+  const tasks = await TaskModel.find(filter).limit(50);
+  return tasks;
+};
 
 const getTaskByIdFromDB = async (taskId: string): Promise<Task> => {
   try {
@@ -229,4 +239,5 @@ export const TaskService = {
   deleteTaskFromDB,
   getTaskStatsFromDB,
   getTasksByCategoryFromDB,
+  getSpinWheelTasksFromDB,
 };
