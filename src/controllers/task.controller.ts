@@ -32,6 +32,17 @@ const getAllTasks = AsyncHandler(async (req: Request, res: Response) => {
       new ApiResponse(StatusCodes.OK, result, "Tasks retrieved successfully")
     );
 });
+const getSpinWheelTasks = AsyncHandler(async (req: Request, res: Response) => {
+  const query: TaskQueryParams = req.query;
+
+  const result = await TaskService.getSpinWheelTasksFromDB(query);
+
+  res
+    .status(StatusCodes.OK)
+    .json(
+      new ApiResponse(StatusCodes.OK, result, "Tasks retrieved successfully")
+    );
+});
 
 const getTaskById = AsyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -177,4 +188,5 @@ export const TaskController = {
   bulkUpdateTasks,
   bulkDeleteTasks,
   getTasksByCategory,
+  getSpinWheelTasks,
 };

@@ -49,4 +49,5 @@ export interface TaskQueryParams {
   page?: number;
   sortBy?: string;
   fields?: string;
+  userId?: string;
 }
